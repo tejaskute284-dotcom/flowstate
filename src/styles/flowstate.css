@@ -1,0 +1,224 @@
+/* FlowState Custom Design System */
+
+:root {
+  /* FlowState Semantic Colors */
+  --color-action-required: #E74C3C;
+  --color-action-required-dark: #C0392B;
+  --color-meeting: #2180E0;
+  --color-meeting-dark: #1A6FCC;
+  --color-focus: #FF6B35;
+  --color-focus-dark: #E74C3C;
+  --color-success: #27AE60;
+  --color-success-dark: #229954;
+  
+  /* FlowState Grey Scale */
+  --color-text-primary: #2C3E50;
+  --color-text-secondary: #556674;
+  --color-text-tertiary: #95A5A6;
+  --color-divider: #ECF0F1;
+  --color-bg-light: #F5F5F5;
+  --color-bg-card: #FFFFFF;
+  
+  /* FlowState Shadows */
+  --shadow-level-1: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-level-2: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-level-3: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-level-4: 0 12px 40px rgba(0, 0, 0, 0.16);
+  
+  /* FlowState Colored Shadows */
+  --shadow-action: 0 4px 12px rgba(231, 76, 60, 0.3);
+  --shadow-meeting: 0 4px 12px rgba(33, 128, 224, 0.3);
+  --shadow-focus: 0 4px 12px rgba(255, 107, 53, 0.3);
+  --shadow-success: 0 4px 12px rgba(39, 174, 96, 0.3);
+  
+  /* FlowState Spacing (8px base) */
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* FlowState Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}
+
+/* FlowState Typography Classes */
+.fs-display {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+}
+
+.fs-heading-1 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+}
+
+.fs-heading-2 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+}
+
+.fs-body {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+}
+
+.fs-label {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+}
+
+.fs-caption {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  opacity: 0.7;
+}
+
+/* FlowState Animations */
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* FlowState Utility Classes */
+.fs-animate-slide-in-down {
+  animation: slideInDown 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.fs-animate-slide-in-up {
+  animation: slideInUp 0.4s ease-out;
+}
+
+.fs-animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.fs-hover-lift {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fs-hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* FlowState Glass Effect */
+.fs-glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(33, 128, 224, 0.2);
+}
+
+.fs-glass-light {
+  background: rgba(227, 242, 253, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(33, 128, 224, 0.2);
+}
+
+/* FlowState Gradient Backgrounds */
+.fs-gradient-action {
+  background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+}
+
+.fs-gradient-meeting {
+  background: linear-gradient(135deg, #2180E0 0%, #1A6FCC 100%);
+}
+
+.fs-gradient-focus {
+  background: linear-gradient(90deg, #FF6B35 0%, #E74C3C 100%);
+}
+
+.fs-gradient-success {
+  background: linear-gradient(135deg, #27AE60 0%, #229954 100%);
+}
+
+.fs-gradient-card-meeting {
+  background: linear-gradient(135deg, #E3F2FD 0%, #FFFFFF 100%);
+}
+
+/* Smooth Transitions (Lenis-inspired) */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
