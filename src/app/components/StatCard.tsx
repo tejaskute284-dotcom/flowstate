@@ -19,30 +19,25 @@ export function StatCard({
   const getColorClasses = () => {
     switch (color) {
       case 'red':
-        return 'text-[#E74C3C] group-hover:border-[#E74C3C]';
+        return 'text-rose-500 bg-rose-50 border-rose-100 group-hover:bg-rose-100/80 dark:bg-rose-900/30 dark:text-rose-400 dark:border-rose-800/50';
       case 'blue':
-        return 'text-[#2180E0] group-hover:border-[#2180E0]';
+        return 'text-blue-500 bg-blue-50 border-blue-100 group-hover:bg-blue-100/80 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800/50';
       case 'orange':
-        return 'text-[#FF6B35] group-hover:border-[#FF6B35]';
+        return 'text-orange-500 bg-orange-50 border-orange-100 group-hover:bg-orange-100/80 dark:bg-orange-900/30 dark:text-orange-400 dark:border-orange-800/50';
       case 'green':
-        return 'text-[#27AE60] group-hover:border-[#27AE60]';
+        return 'text-emerald-500 bg-emerald-50 border-emerald-100 group-hover:bg-emerald-100/80 dark:bg-emerald-900/30 dark:text-emerald-400 dark:border-emerald-800/50';
       default:
-        return 'text-[#2180E0] group-hover:border-[#2180E0]';
+        return 'text-blue-500 bg-blue-50 border-blue-100 dark:bg-blue-900/30 dark:text-blue-400';
     }
   };
 
-  const getGradientAccent = () => {
+  const getGradientLine = () => {
     switch (color) {
-      case 'red':
-        return 'fs-gradient-action';
-      case 'blue':
-        return 'fs-gradient-meeting';
-      case 'orange':
-        return 'fs-gradient-focus';
-      case 'green':
-        return 'fs-gradient-success';
-      default:
-        return 'fs-gradient-meeting';
+      case 'red': return 'from-rose-500 to-red-600';
+      case 'blue': return 'from-blue-500 to-indigo-600';
+      case 'orange': return 'from-orange-500 to-amber-600';
+      case 'green': return 'from-emerald-500 to-teal-600';
+      default: return 'from-blue-500 to-indigo-600';
     }
   };
 
@@ -50,45 +45,42 @@ export function StatCard({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-      whileHover={{
-        y: -4,
-        rotate: 0.5,
-      }}
-      className={`group relative bg-white rounded-2xl p-6 border border-[#ECF0F1] fs-hover-lift cursor-pointer ${
-        large ? 'col-span-2' : ''
-      }`}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -5 }}
+      className={`group relative rounded-2xl p-6 cursor-pointer overflow-hidden fs-card-3d ${large ? 'col-span-2' : ''
+        }`}
       style={{ boxShadow: 'var(--shadow-level-1)' }}
     >
-      {/* Gradient accent on hover */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileHover={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl ${getGradientAccent()}`}
-      />
+      {/* Top Gradient Line */}
+      <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${getGradientLine()} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
-      {/* Icon */}
-      <motion.div
-        whileHover={{ scale: 1.2 }}
-        transition={{ duration: 0.2 }}
-        className={`mb-4 ${getColorClasses()}`}
-      >
-        <Icon className="w-8 h-8" />
-      </motion.div>
+      {/* Content */}
+      <div className="relative z-10 flex flex-col h-full justify-between">
+        <div className="flex justify-between items-start mb-4">
+          <div className={`p-3 rounded-xl border transition-colors duration-300 ${getColorClasses()}`}>
+            <Icon className="w-6 h-6" />
+          </div>
 
-      {/* Value */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1, duration: 0.4 }}
-        className="text-5xl font-bold text-[#2C3E50] mb-2 tabular-nums"
-      >
-        {value}
-      </motion.div>
+          {/* Decorative Sparkle */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            whileHover={{ opacity: 1, scale: 1 }}
+            className={`w-2 h-2 rounded-full bg-gradient-to-r ${getGradientLine()}`}
+          />
+        </div>
 
-      {/* Label */}
-      <div className="text-[#95A5A6] fs-label font-medium">{label}</div>
+        <div>
+          <div className="text-4xl font-bold text-[var(--color-text-primary)] mb-1 font-heading tracking-tight tabular-nums">
+            {value}
+          </div>
+          <div className="text-[var(--color-text-secondary)] text-sm font-medium tracking-wide">
+            {label}
+          </div>
+        </div>
+      </div>
+
+      {/* Background Glow */}
+      <div className={`absolute -bottom-10 -right-10 w-32 h-32 bg-gradient-to-br ${getGradientLine()} opacity-0 group-hover:opacity-5 blur-2xl transition-opacity duration-500 rounded-full`} />
     </motion.div>
   );
 }

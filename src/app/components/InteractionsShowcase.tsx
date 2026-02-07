@@ -10,9 +10,9 @@ export function InteractionsShowcase() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {/* Button States */}
-      <div className="bg-white rounded-2xl p-6 border border-[#ECF0F1]" style={{ boxShadow: 'var(--shadow-level-1)' }}>
-        <h3 className="fs-heading-2 text-[#2C3E50] mb-4">Button States</h3>
-        <p className="text-[#95A5A6] fs-label mb-6">
+      <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 border border-[var(--color-divider)] fs-card-3d" style={{ boxShadow: 'var(--shadow-level-1)' }}>
+        <h3 className="fs-heading-2 text-[var(--color-text-primary)] mb-4">Button States</h3>
+        <p className="text-[var(--color-text-tertiary)] fs-label mb-6">
           Hover and click to see squash & stretch
         </p>
         <div className="space-y-4">
@@ -25,9 +25,9 @@ export function InteractionsShowcase() {
             Primary Action
           </motion.button>
           <motion.button
-            whileHover={{ scale: 1.02, backgroundColor: '#F0F7FF' }}
+            whileHover={{ scale: 1.02, backgroundColor: 'var(--color-bg-elevated)' }}
             whileTap={{ scale: 0.98 }}
-            className="w-full py-3 px-4 bg-white text-[#2180E0] border-2 border-[#2180E0] rounded-lg fs-body font-semibold"
+            className="w-full py-3 px-4 bg-[var(--color-bg-card)] text-[var(--color-meeting)] border-2 border-[var(--color-meeting)] rounded-lg fs-body font-semibold"
           >
             Secondary Action
           </motion.button>
@@ -35,21 +35,20 @@ export function InteractionsShowcase() {
       </div>
 
       {/* Toggle States */}
-      <div className="bg-white rounded-2xl p-6 border border-[#ECF0F1]" style={{ boxShadow: 'var(--shadow-level-1)' }}>
-        <h3 className="fs-heading-2 text-[#2C3E50] mb-4">Toggle Animation</h3>
-        <p className="text-[#95A5A6] fs-label mb-6">
+      <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 border border-[var(--color-divider)] fs-card-3d" style={{ boxShadow: 'var(--shadow-level-1)' }}>
+        <h3 className="fs-heading-2 text-[var(--color-text-primary)] mb-4">Toggle Animation</h3>
+        <p className="text-[var(--color-text-tertiary)] fs-label mb-6">
           Smooth thumb slide with elastic bounce
         </p>
         <div className="flex items-center justify-center">
           <motion.button
             onClick={() => setToggleState(!toggleState)}
-            className={`relative w-16 h-8 rounded-full transition-colors duration-300 ${
-              toggleState ? 'bg-[#FF6B35]' : 'bg-[#E0E0E0]'
-            }`}
+            className={`relative w-16 h-8 rounded-full transition-colors duration-300 ${toggleState ? 'bg-[#FF6B35]' : 'bg-[#E0E0E0]'
+              }`}
             whileTap={{ scale: 0.95 }}
           >
             <motion.div
-              className="absolute top-1 w-6 h-6 bg-white rounded-full shadow-md"
+              className="absolute top-1 w-6 h-6 bg-[var(--color-bg-card)] rounded-full shadow-md"
               animate={{
                 left: toggleState ? '36px' : '4px',
               }}
@@ -60,25 +59,24 @@ export function InteractionsShowcase() {
             />
           </motion.button>
         </div>
-        <p className="text-center text-[#556674] fs-caption mt-4">
+        <p className="text-center text-[var(--color-text-secondary)] fs-caption mt-4">
           {toggleState ? 'ON' : 'OFF'}
         </p>
       </div>
 
       {/* Checkbox Animation */}
-      <div className="bg-white rounded-2xl p-6 border border-[#ECF0F1]" style={{ boxShadow: 'var(--shadow-level-1)' }}>
-        <h3 className="fs-heading-2 text-[#2C3E50] mb-4">Checkbox States</h3>
-        <p className="text-[#95A5A6] fs-label mb-6">
+      <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 border border-[var(--color-divider)] fs-card-3d" style={{ boxShadow: 'var(--shadow-level-1)' }}>
+        <h3 className="fs-heading-2 text-[var(--color-text-primary)] mb-4">Checkbox States</h3>
+        <p className="text-[var(--color-text-tertiary)] fs-label mb-6">
           Click to see elastic bounce effect
         </p>
         <div className="flex items-center justify-center">
           <motion.button
             onClick={() => setCheckboxState(!checkboxState)}
-            className={`w-12 h-12 rounded-lg border-2 flex items-center justify-center transition-colors ${
-              checkboxState
-                ? 'fs-gradient-success border-transparent'
-                : 'border-[#E0E0E0] bg-white'
-            }`}
+            className={`w-12 h-12 rounded-lg border-2 flex items-center justify-center transition-colors ${checkboxState
+              ? 'fs-gradient-success border-transparent'
+              : 'border-[var(--color-divider)] bg-[var(--color-bg-card)]'
+              }`}
             whileTap={{ scale: 0.9 }}
             animate={{
               scale: checkboxState ? [1, 1.1, 1] : 1,
@@ -103,9 +101,9 @@ export function InteractionsShowcase() {
       </div>
 
       {/* Card Hover */}
-      <div className="bg-white rounded-2xl p-6 border border-[#ECF0F1]" style={{ boxShadow: 'var(--shadow-level-1)' }}>
-        <h3 className="fs-heading-2 text-[#2C3E50] mb-4">Card Hover</h3>
-        <p className="text-[#95A5A6] fs-label mb-6">
+      <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 border border-[var(--color-divider)] fs-card-3d" style={{ boxShadow: 'var(--shadow-level-1)' }}>
+        <h3 className="fs-heading-2 text-[var(--color-text-primary)] mb-4">Card Hover</h3>
+        <p className="text-[var(--color-text-tertiary)] fs-label mb-6">
           Multi-stage hover with lift effect
         </p>
         <motion.div
@@ -118,19 +116,19 @@ export function InteractionsShowcase() {
           className="bg-[#F5F8FF] border border-[#E3F2FD] rounded-xl p-4 cursor-pointer"
           style={{ boxShadow: 'var(--shadow-level-1)' }}
         >
-          <div className="text-[#2C3E50] fs-body font-medium mb-1">
+          <div className="text-[var(--color-text-primary)] fs-body font-medium mb-1">
             Hover me
           </div>
-          <div className="text-[#95A5A6] fs-label">
+          <div className="text-[var(--color-text-tertiary)] fs-label">
             Watch the subtle lift
           </div>
         </motion.div>
       </div>
 
       {/* Input Focus */}
-      <div className="bg-white rounded-2xl p-6 border border-[#ECF0F1]" style={{ boxShadow: 'var(--shadow-level-1)' }}>
-        <h3 className="fs-heading-2 text-[#2C3E50] mb-4">Input Focus</h3>
-        <p className="text-[#95A5A6] fs-label mb-6">
+      <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 border border-[var(--color-divider)] fs-card-3d" style={{ boxShadow: 'var(--shadow-level-1)' }}>
+        <h3 className="fs-heading-2 text-[var(--color-text-primary)] mb-4">Input Focus</h3>
+        <p className="text-[var(--color-text-tertiary)] fs-label mb-6">
           Click to see blue glow appear
         </p>
         <motion.input
@@ -141,14 +139,14 @@ export function InteractionsShowcase() {
             boxShadow: '0 0 0 4px rgba(33,128,224,0.1)',
           }}
           transition={{ duration: 0.2 }}
-          className="w-full px-4 py-3 border-2 border-[#E0E0E0] rounded-lg fs-body outline-none transition-all"
+          className="w-full px-4 py-3 border-2 border-[var(--color-divider)] bg-[var(--color-bg-card)] text-[var(--color-text-primary)] rounded-lg fs-body outline-none transition-all"
         />
       </div>
 
       {/* Badge Pulse */}
-      <div className="bg-white rounded-2xl p-6 border border-[#ECF0F1]" style={{ boxShadow: 'var(--shadow-level-1)' }}>
-        <h3 className="fs-heading-2 text-[#2C3E50] mb-4">Badge Pulse</h3>
-        <p className="text-[#95A5A6] fs-label mb-6">
+      <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 border border-[var(--color-divider)] fs-card-3d" style={{ boxShadow: 'var(--shadow-level-1)' }}>
+        <h3 className="fs-heading-2 text-[var(--color-text-primary)] mb-4">Badge Pulse</h3>
+        <p className="text-[var(--color-text-tertiary)] fs-label mb-6">
           Continuous pulse for urgency
         </p>
         <div className="flex justify-center">
@@ -170,9 +168,9 @@ export function InteractionsShowcase() {
       </div>
 
       {/* Drag Preview */}
-      <div className="bg-white rounded-2xl p-6 border border-[#ECF0F1]" style={{ boxShadow: 'var(--shadow-level-1)' }}>
-        <h3 className="fs-heading-2 text-[#2C3E50] mb-4">Drag Behavior</h3>
-        <p className="text-[#95A5A6] fs-label mb-6">
+      <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 border border-[var(--color-divider)] fs-card-3d" style={{ boxShadow: 'var(--shadow-level-1)' }}>
+        <h3 className="fs-heading-2 text-[var(--color-text-primary)] mb-4">Drag Behavior</h3>
+        <p className="text-[var(--color-text-tertiary)] fs-label mb-6">
           Drag to see lift & rotation
         </p>
         <div className="flex justify-center">
@@ -195,14 +193,14 @@ export function InteractionsShowcase() {
       </div>
 
       {/* Expand Preview */}
-      <div className="bg-white rounded-2xl p-6 border border-[#ECF0F1]" style={{ boxShadow: 'var(--shadow-level-1)' }}>
-        <h3 className="fs-heading-2 text-[#2C3E50] mb-4">Expand Animation</h3>
-        <p className="text-[#95A5A6] fs-label mb-6">
+      <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 border border-[var(--color-divider)] fs-card-3d" style={{ boxShadow: 'var(--shadow-level-1)' }}>
+        <h3 className="fs-heading-2 text-[var(--color-text-primary)] mb-4">Expand Animation</h3>
+        <p className="text-[var(--color-text-tertiary)] fs-label mb-6">
           Click to see height transition
         </p>
         <motion.div
           layout
-          onClick={() => {}}
+          onClick={() => { }}
           className="bg-[#F5F5F5] rounded-lg overflow-hidden cursor-pointer"
         >
           <div className="p-4">
@@ -214,9 +212,9 @@ export function InteractionsShowcase() {
       </div>
 
       {/* Slide In */}
-      <div className="bg-white rounded-2xl p-6 border border-[#ECF0F1]" style={{ boxShadow: 'var(--shadow-level-1)' }}>
-        <h3 className="fs-heading-2 text-[#2C3E50] mb-4">Slide Animation</h3>
-        <p className="text-[#95A5A6] fs-label mb-6">
+      <div className="bg-[var(--color-bg-card)] rounded-2xl p-6 border border-[var(--color-divider)] fs-card-3d" style={{ boxShadow: 'var(--shadow-level-1)' }}>
+        <h3 className="fs-heading-2 text-[var(--color-text-primary)] mb-4">Slide Animation</h3>
+        <p className="text-[var(--color-text-tertiary)] fs-label mb-6">
           Elements slide in with stagger
         </p>
         <div className="space-y-2">

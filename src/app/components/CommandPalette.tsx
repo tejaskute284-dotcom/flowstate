@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Search, Mail, Calendar, Clock, User, Hash, Command as CommandIcon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-interface SearchResult {
+export interface SearchResult {
   id: string;
   type: 'email' | 'contact' | 'event' | 'action';
   title: string;
@@ -53,10 +53,10 @@ export function CommandPalette({ isOpen, onClose, onSelect }: CommandPaletteProp
 
   const filteredResults = query
     ? mockResults.filter(
-        (r) =>
-          r.title.toLowerCase().includes(query.toLowerCase()) ||
-          r.subtitle.toLowerCase().includes(query.toLowerCase())
-      )
+      (r) =>
+        r.title.toLowerCase().includes(query.toLowerCase()) ||
+        r.subtitle.toLowerCase().includes(query.toLowerCase())
+    )
     : mockResults;
 
   useEffect(() => {
@@ -98,7 +98,7 @@ export function CommandPalette({ isOpen, onClose, onSelect }: CommandPaletteProp
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-50"
             onClick={onClose}
           />
 
@@ -111,12 +111,15 @@ export function CommandPalette({ isOpen, onClose, onSelect }: CommandPaletteProp
             className="fixed top-[20vh] left-1/2 -translate-x-1/2 w-full max-w-2xl z-50"
           >
             <div
-              className="bg-white rounded-2xl overflow-hidden border border-[#ECF0F1]"
-              style={{ boxShadow: 'var(--shadow-level-4)' }}
+              className="bg-[var(--color-bg-card)] rounded-2xl overflow-hidden border border-[var(--color-divider)] fs-glass-pro"
+              style={{ boxShadow: 'var(--shadow-glow-lg)' }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Command Palette"
             >
               {/* Search Input */}
-              <div className="flex items-center gap-3 px-6 py-4 border-b border-[#ECF0F1]">
-                <Search className="w-5 h-5 text-[#95A5A6]" />
+              <div className="flex items-center gap-3 px-6 py-4 border-b border-[var(--color-divider)]">
+                <Search className="w-5 h-5 text-[var(--color-text-tertiary)]" />
                 <input
                   type="text"
                   placeholder="Search emails, contacts, events..."
@@ -126,16 +129,21 @@ export function CommandPalette({ isOpen, onClose, onSelect }: CommandPaletteProp
                     setSelectedIndex(0);
                   }}
                   autoFocus
-                  className="flex-1 bg-transparent outline-none text-[#2C3E50] fs-body placeholder:text-[#95A5A6]"
+                  className="flex-1 bg-transparent outline-none text-[var(--color-text-primary)] fs-body placeholder:text-[var(--color-text-tertiary)]"
+                  aria-label="Command search input"
                 />
-                <div className="flex items-center gap-1 text-[#95A5A6] fs-caption">
+                <div className="flex items-center gap-1 text-[var(--color-text-tertiary)] fs-caption">
                   <CommandIcon className="w-3 h-3" />
                   <span>K</span>
                 </div>
               </div>
 
               {/* Results */}
-              <div className="max-h-[400px] overflow-y-auto">
+              <div
+                className="max-h-[400px] overflow-y-auto"
+                role="listbox"
+                aria-label="Search results"
+              >
                 {filteredResults.length > 0 ? (
                   <div className="py-2">
                     {filteredResults.map((result, index) => {
@@ -150,35 +158,36 @@ export function CommandPalette({ isOpen, onClose, onSelect }: CommandPaletteProp
                           transition={{ delay: index * 0.03 }}
                           className={`
                             flex items-center gap-4 px-6 py-3 cursor-pointer transition-colors
-                            ${isSelected ? 'bg-[#F5F8FF]' : 'hover:bg-[#FAFBFC]'}
+                            ${isSelected ? 'bg-[var(--color-bg-light)]' : 'hover:bg-[var(--color-bg-light)]'}
                           `}
                           onClick={() => {
                             onSelect?.(result);
                             onClose();
                           }}
                           onMouseEnter={() => setSelectedIndex(index)}
+                          role="option"
+                          aria-selected={isSelected}
                         >
                           <div
                             className={`
                             w-10 h-10 rounded-lg flex items-center justify-center
-                            ${
-                              result.type === 'email'
-                                ? 'bg-[#E3F2FD] text-[#2180E0]'
+                            ${result.type === 'email'
+                                ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400'
                                 : result.type === 'event'
-                                ? 'bg-[#F3E5F5] text-[#9C27B0]'
-                                : result.type === 'contact'
-                                ? 'bg-[#E8F5E9] text-[#27AE60]'
-                                : 'bg-[#FFF7ED] text-[#FF6B35]'
-                            }
+                                  ? 'bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400'
+                                  : result.type === 'contact'
+                                    ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400'
+                                    : 'bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400'
+                              }
                           `}
                           >
                             <Icon className="w-5 h-5" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <div className="text-[#2C3E50] fs-body font-medium truncate">
+                            <div className="text-[var(--color-text-primary)] fs-body font-medium truncate">
                               {result.title}
                             </div>
-                            <div className="text-[#95A5A6] fs-label truncate">
+                            <div className="text-[var(--color-text-tertiary)] fs-label truncate">
                               {result.subtitle}
                             </div>
                           </div>
@@ -186,7 +195,7 @@ export function CommandPalette({ isOpen, onClose, onSelect }: CommandPaletteProp
                             <motion.div
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
-                              className="text-[#2180E0] fs-caption flex items-center gap-1"
+                              className="text-[var(--color-meeting)] fs-caption flex items-center gap-1"
                             >
                               <span>↵</span>
                             </motion.div>
@@ -198,31 +207,31 @@ export function CommandPalette({ isOpen, onClose, onSelect }: CommandPaletteProp
                 ) : (
                   <div className="py-12 text-center">
                     <div className="text-6xl mb-3">🔍</div>
-                    <p className="text-[#95A5A6] fs-body">No results found</p>
+                    <p className="text-[var(--color-text-tertiary)] fs-body">No results found</p>
                   </div>
                 )}
               </div>
 
               {/* Footer */}
-              <div className="flex items-center justify-between px-6 py-3 border-t border-[#ECF0F1] bg-[#FAFBFC]">
-                <div className="flex items-center gap-4 text-[#95A5A6] fs-caption">
+              <div className="flex items-center justify-between px-6 py-3 border-t border-[var(--color-divider)] bg-[var(--color-bg-light)]">
+                <div className="flex items-center gap-4 text-[var(--color-text-tertiary)] fs-caption">
                   <div className="flex items-center gap-1">
-                    <kbd className="px-2 py-1 bg-white rounded border border-[#ECF0F1] text-xs">
+                    <kbd className="px-2 py-1 bg-[var(--color-bg-card)] rounded border border-[var(--color-divider)] text-xs">
                       ↑
                     </kbd>
-                    <kbd className="px-2 py-1 bg-white rounded border border-[#ECF0F1] text-xs">
+                    <kbd className="px-2 py-1 bg-[var(--color-bg-card)] rounded border border-[var(--color-divider)] text-xs">
                       ↓
                     </kbd>
                     <span>Navigate</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <kbd className="px-2 py-1 bg-white rounded border border-[#ECF0F1] text-xs">
+                    <kbd className="px-2 py-1 bg-[var(--color-bg-card)] rounded border border-[var(--color-divider)] text-xs">
                       ↵
                     </kbd>
                     <span>Select</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <kbd className="px-2 py-1 bg-white rounded border border-[#ECF0F1] text-xs">
+                    <kbd className="px-2 py-1 bg-[var(--color-bg-card)] rounded border border-[var(--color-divider)] text-xs">
                       Esc
                     </kbd>
                     <span>Close</span>

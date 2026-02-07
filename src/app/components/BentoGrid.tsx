@@ -55,12 +55,14 @@ export function BentoCard({
         rotate: 0.5,
       }}
       className={`
-        relative bg-white rounded-2xl p-6 border border-[#ECF0F1] 
-        fs-hover-lift cursor-pointer overflow-hidden group
+        relative rounded-2xl p-6 cursor-pointer overflow-hidden group fs-card-3d
         ${getSpanClass()} ${className}
       `}
       style={{ boxShadow: 'var(--shadow-level-1)' }}
     >
+      {/* Shimmer Overlay */}
+      <div className="fs-shimmer-overlay" />
+
       {/* Gradient accent on hover */}
       {gradient && (
         <motion.div
@@ -70,7 +72,7 @@ export function BentoCard({
           className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl fs-gradient-meeting"
         />
       )}
-      
+
       {/* Radial gradient spotlight effect on hover */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -79,10 +81,11 @@ export function BentoCard({
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(circle at 50% 0%, rgba(33, 128, 224, 0.05) 0%, transparent 70%)',
+            'radial-gradient(circle at 50% 0%, var(--color-meeting), transparent 70%)',
+          opacity: 0.05
         }}
       />
-      
+
       <div className="relative z-10">{children}</div>
     </motion.div>
   );

@@ -35,7 +35,7 @@ export function EmptyState({
               cx="100"
               cy="100"
               r="80"
-              fill="#E3F2FD"
+              fill="var(--color-bg-light)"
             />
             <motion.rect
               initial={{ y: 20, opacity: 0 }}
@@ -47,7 +47,7 @@ export function EmptyState({
               height="80"
               rx="8"
               fill="white"
-              stroke="#2180E0"
+              stroke="var(--color-meeting)"
               strokeWidth="3"
             />
             <motion.path
@@ -55,7 +55,7 @@ export function EmptyState({
               animate={{ pathLength: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
               d="M 50 60 L 100 100 L 150 60"
-              stroke="#2180E0"
+              stroke="var(--color-meeting)"
               strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -68,7 +68,7 @@ export function EmptyState({
               cx="135"
               cy="75"
               r="15"
-              fill="#27AE60"
+              fill="var(--color-success)"
             />
             <motion.path
               initial={{ pathLength: 0 }}
@@ -227,7 +227,7 @@ export function EmptyState({
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.4 }}
-        className="fs-heading-1 text-[#2C3E50] mb-2"
+        className="fs-heading-1 text-[var(--color-text-primary)] mb-2"
       >
         {title}
       </motion.h2>
@@ -237,7 +237,7 @@ export function EmptyState({
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.4 }}
-        className="text-[#95A5A6] fs-body mb-6 max-w-md"
+        className="text-[var(--color-text-tertiary)] fs-body mb-6 max-w-md"
       >
         {description}
       </motion.p>
@@ -251,7 +251,7 @@ export function EmptyState({
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={onAction}
-          className="py-3 px-6 bg-white text-[#2180E0] border-2 border-[#2180E0] rounded-xl fs-body font-semibold hover:bg-[#F0F7FF] transition-colors"
+          className="py-3 px-6 bg-white text-[var(--color-meeting)] border-2 border-[var(--color-meeting)] rounded-xl fs-body font-semibold hover:bg-[var(--color-bg-light)] transition-colors"
         >
           {actionLabel}
         </motion.button>

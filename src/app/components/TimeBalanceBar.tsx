@@ -12,91 +12,63 @@ export function TimeBalanceBar({
   emailTasks,
 }: TimeBalanceBarProps) {
   return (
-    <div className="bg-[#F5F5F5] rounded-xl p-1 overflow-hidden h-12">
-      <div className="flex h-full gap-1">
+    <div className="bg-[var(--color-bg-light)] rounded-2xl p-1.5 overflow-hidden h-14 border border-[var(--color-divider)] shadow-inner">
+      <div className="flex h-full gap-1.5">
         {/* Focus Time Segment */}
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${focusTime}%` }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="relative fs-gradient-meeting rounded-lg flex items-center justify-center overflow-hidden group cursor-pointer"
-          whileHover={{ scale: 1.05, zIndex: 10 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="relative bg-gradient-to-br from-[var(--color-focus)] to-[var(--color-action-required)] rounded-xl flex items-center justify-center overflow-hidden group cursor-pointer shadow-lg shadow-orange-500/20"
+          whileHover={{ scale: 0.98 }}
         >
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
           <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.3 }}
-            className="text-white text-sm font-semibold drop-shadow-md relative z-10"
+            className="text-white text-[13px] font-bold tracking-wide relative z-10"
           >
             {focusTime}%
           </motion.span>
-          <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-50" />
-          
-          {/* Tooltip on hover */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileHover={{ opacity: 1, y: -40 }}
-            className="absolute bg-[#2C3E50] text-white px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap pointer-events-none"
-            style={{ boxShadow: 'var(--shadow-level-3)' }}
-          >
-            Focus Time: {focusTime}%
-          </motion.div>
         </motion.div>
 
         {/* Meetings Segment */}
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${meetings}%` }}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-          className="relative bg-gradient-to-r from-[#95A5A6] to-[#AAB7B8] rounded-lg flex items-center justify-center overflow-hidden group cursor-pointer"
-          whileHover={{ scale: 1.05, zIndex: 10 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          className="relative bg-gradient-to-br from-[var(--color-meeting)] to-[var(--color-accent-primary)] rounded-xl flex items-center justify-center overflow-hidden group cursor-pointer shadow-lg shadow-blue-500/20"
+          whileHover={{ scale: 0.98 }}
         >
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
           <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.3 }}
-            className="text-white text-sm font-semibold drop-shadow-md relative z-10"
+            className="text-white text-[13px] font-bold tracking-wide relative z-10"
           >
             {meetings}%
           </motion.span>
-          
-          {/* Tooltip on hover */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileHover={{ opacity: 1, y: -40 }}
-            className="absolute bg-[#2C3E50] text-white px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap pointer-events-none"
-            style={{ boxShadow: 'var(--shadow-level-3)' }}
-          >
-            Meetings: {meetings}%
-          </motion.div>
         </motion.div>
 
         {/* Email/Tasks Segment */}
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${emailTasks}%` }}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-          className="relative bg-gradient-to-r from-[#BDC3C7] to-[#D5DBDB] rounded-lg flex items-center justify-center overflow-hidden group cursor-pointer"
-          whileHover={{ scale: 1.05, zIndex: 10 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          className="relative bg-gradient-to-br from-[var(--color-text-tertiary)] to-[var(--color-text-muted)] rounded-xl flex items-center justify-center overflow-hidden group cursor-pointer"
+          whileHover={{ scale: 0.98 }}
         >
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
           <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.3 }}
-            className="text-[#556674] text-sm font-semibold drop-shadow-sm relative z-10"
+            className="text-white text-[13px] font-bold tracking-wide relative z-10"
           >
             {emailTasks}%
           </motion.span>
-          
-          {/* Tooltip on hover */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileHover={{ opacity: 1, y: -40 }}
-            className="absolute bg-[#2C3E50] text-white px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap pointer-events-none"
-            style={{ boxShadow: 'var(--shadow-level-3)' }}
-          >
-            Email/Tasks: {emailTasks}%
-          </motion.div>
         </motion.div>
       </div>
     </div>
