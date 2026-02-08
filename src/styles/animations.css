@@ -1,0 +1,73 @@
+/* Global Animation Utilities */
+
+/* Force GPU layer creation for smooth transitions */
+.fs-gpu-layer {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Shimmer Loading Animation */
+@keyframes fs-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.fs-animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.fs-animate-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: fs-shimmer 2s infinite cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Character Split Reveals */
+.fs-char-reveal {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+/* Reduced Motion Responsiveness */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fs-gpu-layer {
+    will-change: auto;
+    transform: none;
+    backface-visibility: visible;
+  }
+
+  [data-animate="true"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Layout Container Containment for Paint Optimization */
+#scroll-container {
+  contain: layout style paint;
+}

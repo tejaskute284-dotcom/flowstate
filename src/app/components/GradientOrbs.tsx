@@ -1,5 +1,8 @@
 import { motion } from 'motion/react';
 
+import { useRef } from 'react';
+import { useParallaxOrbs } from '@/app/hooks/useParallaxOrbs';
+
 interface GradientOrbsProps {
   variant?: 'login' | 'empty' | 'background';
 }

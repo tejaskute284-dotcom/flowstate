@@ -6,6 +6,7 @@ import { SearchHeader } from '@/app/components/SearchHeader';
 import { FocusBanner } from '@/app/components/FocusBanner';
 import { CommandPalette, SearchResult } from '@/app/components/CommandPalette';
 import { GradientOrbs } from '@/app/components/GradientOrbs';
+import { ScrollProgress } from '@/app/components/ScrollProgress';
 import { Toaster, toast } from 'sonner';
 
 // Import Views
@@ -18,6 +19,7 @@ import { ProfileView } from '@/app/views/ProfileView';
 
 // Import Mock Data
 import { actionEmails, meetings } from '@/app/data/mockData';
+import { pageVariants } from '@/app/lib/pageTransitions';
 
 export default function App() {
   const [activeView, setActiveView] = useState('inbox');
@@ -141,6 +143,9 @@ export default function App() {
       {/* Gradient Orbs Background */}
       <GradientOrbs variant="background" />
 
+      {/* Scroll Progress Indicator */}
+      <ScrollProgress />
+
       {/* Command Palette */}
       <CommandPalette
         isOpen={commandPaletteOpen}
@@ -209,7 +214,16 @@ export default function App() {
         <div id="scroll-container" ref={scrollContainerRef} className="flex-1 overflow-y-auto overflow-x-hidden p-6 relative">
           <div ref={contentRef} className="min-h-full">
             <AnimatePresence mode="wait">
-              {renderView()}
+              <motion.div
+                key={activeView}
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="w-full h-full"
+              >
+                {renderView()}
+              </motion.div>
             </AnimatePresence>
           </div>
         </div>
